@@ -4,11 +4,14 @@
   <body>
     <h1>Posts:</h1>
       {% for obj in object_list %}
-        {{ obj.title }}<br/>
+
+        <a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a><br/>
         {{ obj.content }}<br/>
         {{ obj.created }}<br/>
         {{ obj.updated }}<br/>
         {{ obj.id }}<br/>    
+        <br>
+        
       {% endfor %}
   </body>
 
