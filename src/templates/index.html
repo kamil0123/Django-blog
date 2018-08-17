@@ -1,18 +1,17 @@
-<!--DOCTYPE html -->
-<html>
+{% extends "base.html" %}
 
-  <body>
-    <h1>Posts:</h1>
-      {% for obj in object_list %}
+{% block content %}
+  <h1>Posts:</h1>
 
-        <a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a><br/>
-        {{ obj.content }}<br/>
-        {{ obj.created }}<br/>
-        {{ obj.updated }}<br/>
-        {{ obj.id }}<br/>    
-        <br>
-        
-      {% endfor %}
-  </body>
+  {% for obj in object_list %}
 
-</html>
+    <a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a><br/>
+    {{ obj.content }}<br/>
+    {{ obj.created }}<br/>
+    {{ obj.updated }}<br/>
+    {{ obj.id }}<br/>    
+    <br>
+    
+  {% endfor %}
+
+{% endblock content %}
