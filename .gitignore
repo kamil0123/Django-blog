@@ -106,3 +106,6 @@ venv.bak/
 # sublime
 *.sublime-workspace
 *.sublime-project
+
+# static jpg files
+media_cdn/*.jpg

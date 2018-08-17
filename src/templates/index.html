@@ -8,15 +8,21 @@
   {% for obj in object_list %}
   <div clas="row">
     <div class="col-sm-12">
-      <div class="caption">
-        <h3>
-          <a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a>
-          <small>{{ obj.created|timesince }} ago</small>
-        </h3>
-        <p>{{ obj.content|linebreaks|truncatechars:120 }}</p>
-        <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
+      <div class="thumbnail">
+        {% if obj.image %}
+          <img src='{{ obj.image.url }}' class='img-responsive' />
+        {% endif %}
+        <div class="caption">
+          <h3>
+            <a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a>
+            <small>{{ obj.created|timesince }} ago</small>
+          </h3>
+          <p>{{ obj.content|linebreaks|truncatechars:120 }}</p>
+          <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
+        </div>
       </div>
     </div>
+  <hr/>
   </div>
   {% endfor %}
 
