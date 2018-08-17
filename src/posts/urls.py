@@ -5,5 +5,5 @@ from posts.views import PostView, PostsView
 app_name = 'posts'
 urlpatterns = [
     path('', PostsView.as_view(), name='posts'),
-    path('post/<int:id>/', PostView.as_view(), name='post'),
+    path('post/<slug:slug>/', PostView.as_view(), name='post'),
 ]

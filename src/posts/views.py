@@ -31,8 +31,8 @@ class PostsView(View):
     return render(request, "index.html", context)
 
 class PostView(View):
-  def get(self, request, id=None, *args, **kwargs):
-    instance = get_object_or_404(Post, id=id)
+  def get(self, request, slug=None, *args, **kwargs):
+    instance = get_object_or_404(Post, slug=slug)
     context = {
       "title": instance.title,
       "instance": instance,

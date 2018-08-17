@@ -108,4 +108,4 @@ venv.bak/
 *.sublime-project
 
 # static jpg files
-media_cdn/*.jpg
+media_cdn/*
