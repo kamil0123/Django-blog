@@ -1,17 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+<div class='col-sm-6 col-sm-offset-3'>
   <h1>Posts:</h1>
 
   {% for obj in object_list %}
-
-    <a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a><br/>
-    {{ obj.content }}<br/>
-    {{ obj.created }}<br/>
-    {{ obj.updated }}<br/>
-    {{ obj.id }}<br/>    
-    <br>
-    
+  <div clas="row">
+    <div class="col-sm-12">
+      <div class="caption">
+        <h3>
+          <a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a>
+          <small>{{ obj.created|timesince }} ago</small>
+        </h3>
+        <p>{{ obj.content|linebreaks|truncatechars:120 }}</p>
+        <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
+      </div>
+    </div>
+  </div>
   {% endfor %}
 
+</div>
 {% endblock content %}
+
+
