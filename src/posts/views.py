@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import Http404
 from django.views import View
 from django.shortcuts import render, get_object_or_404
+from django.utils import timezone
 
 from .models import Post
 
@@ -9,8 +11,14 @@ from .models import Post
 
 class PostsView(View):
   def get(self, request, *args, **kwargs):
+
+    today = timezone.now().date()
     page_request_var = "page"
-    queryset_list = Post.objects.all()
+    
+    queryset_list = Post.objects.active() #.order_by("-timestamp")
+    if request.user.is_staff or request.user.is_superuser:
+      queryset_list = Post.objects.all()
+
     paginator = Paginator(queryset_list, 10) # Show 25 contacts per page
     page = request.GET.get(page_request_var)
 
@@ -26,13 +34,19 @@ class PostsView(View):
     context = {
         "object_list" : queryset,
         "title": "List",
-        "page_request_var": page_request_var
+        "page_request_var": page_request_var,
+        "today": today
     }
     return render(request, "index.html", context)
 
 class PostView(View):
   def get(self, request, slug=None, *args, **kwargs):
     instance = get_object_or_404(Post, slug=slug)
+
+    if instance.publish > timezone.now().date() or instance.draft:
+      if not request.user.is_staff or not request.user.is_superuser:
+        raise Http404
+    
     context = {
       "title": instance.title,
       "instance": instance,
