@@ -7,14 +7,27 @@ from django.utils import timezone
 
 # Create your models here.
 
+class PostQuerySet(models.query.QuerySet):
+  def not_draft(self):
+    return self.filter(draft=False)
+  
+  def published(self):
+    return self.filter(publish__lte=timezone.now()).not_draft()
+
+
 class PostManager(models.Manager):
+  def get_queryset(self, *args, **kwargs):
+    return PostQuerySet(self.model, using=self._db)
+
   def active(self, *args, **kwargs):
     # Post.objects.all() = super(PostManager, self).all()
-    return super(PostManager, self).filter(draft=False).filter(publish__lte=timezone.now())
+    return self.get_queryset().published()
 
 def upload_location(instance, filename):
     #filebase, extension = filename.split(".")
     #return "%s/%s.%s" %(instance.id, instance.id, extension)
+    PostModel = instance.__class__
+    new_id = PostModel.objects.order_by("id").last().id + 1
     return "%s/%s" %(instance.id, filename)
 
 class Post(models.Model):
