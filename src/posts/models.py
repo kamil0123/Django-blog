@@ -23,9 +23,11 @@ class Post(models.Model):
             height_field="height_field")
   height_field = models.IntegerField(default=0)
   width_field = models.IntegerField(default=0)
-  updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+  draft = models.BooleanField(default=False)
   created = models.DateTimeField(auto_now=False, auto_now_add=True)
-
+  updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+  publish = models.DateField(auto_now=False, auto_now_add=False)
+  
   def __str__(self):
     return self.title
 
