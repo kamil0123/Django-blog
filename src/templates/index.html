@@ -2,46 +2,41 @@
 
 {% block content %}
 
-<div class='col-sm-6 col-sm-offset-3'>
-  <h1>Posts:</h1>
-
   <form method='GET' action=''>
     <input type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
     <input type='submit' value='Search' />
   </form>
 
   {% for obj in object_list %}
-  <div clas="row">
-    <div class="col-sm-12">
-      <div class="thumbnail">
-        {% if obj.image %}
-          <img src='{{ obj.image.url }}' class='img-responsive' />
-        {% endif %}
-        <div class="caption">
-          
-          {% if obj.draft %}
-            <h3>Staff only: Draft</h3>
-          {% endif %} 
-          {% if obj.publish > today %}
-            <h3>Staff Only: Future Post</h3>
-          {% endif %}
-          
-          <h3>
-            <a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a>
-            <small>{{ obj.publish|timesince }} ago</small>
-          </h3>
 
-          {% if obj.user.get_full_name %}
-            <p>Author: {{ obj.user.get_full_name }}</p>
-          {% endif %}
+    <div class="single-post">
 
-          <p>{{ obj.content|linebreaks|truncatechars:120 }}</p>
-          <p><a href="{{ obj.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
+      {% if obj.image %}
+        <div class="image-wrapper"><img src="images/blog-1-1000x600.jpg" alt="Blog Image"></div>
+      {% endif %} 
+
+      {% if obj.draft %}
+        <h3>Staff only: Draft</h3>
+      {% endif %} 
+      {% if obj.publish > today %}
+        <h3>Staff Only: Future Post</h3>
+      {% endif %}
+
+      <div class="icons">
+        <div class="left-area">
+          <a class="btn caegory-btn" href="#"><b>NIEMOWLAKI</b></a>
         </div>
+        <ul class="right-area social-icons">
+          <li><a href="#"><i class="ion-android-share-alt"></i>Share</a></li>
+          <li><a href="#"><i class="ion-android-favorite-outline"></i>03</a></li>
+          <li><a href="#"><i class="ion-android-textsms"></i>06</a></li>
+        </ul>
       </div>
-    </div>
-  <hr/>
-  </div>
+      <p class="date"><em>{{ obj.publish|timesince }} ago</em></p>
+      <h3 class="title"><a href='{{ obj.get_absolute_url }}'><b class="light-color">{{ obj.title }}</b></a></h3>
+      <p>{{ obj.content|linebreaks|truncatechars:120 }}</p>
+      <a class="btn read-more-btn" href="{{ obj.get_absolute_url }}"><b>CZYTAJ DALEJ</b></a>
+    </div><!-- single-post -->
   {% endfor %}
 
   <div class="pagination">
@@ -58,7 +53,6 @@
     </span>
   </div>
 
-</div>
 {% endblock content %}
 
 
