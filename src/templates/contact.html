@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block head_title %}
+  {{ instance.title }} | {{ block.super }}
+{% endblock head_title %}
+
+{% block css %}
+
+<link rel="stylesheet" href='{% static "css/contact/styles.css" %}' />
+
+<link rel="stylesheet" href='{% static "css/contact/responsive.css" %}' />
+
+{% endblock css %}
+
+{% block content %}
+
+  <div class="leave-comment-area">
+    <h4 class="title"><b class="light-color">Napisz do mnie</b></h4>
+    <div class="leave-comment">
+
+      <form method="post">
+        <div class="row">
+          <div class="col-sm-6">
+            <input class="name-input" type="text" placeholder="Imię">
+          </div>
+          <div class="col-sm-6">
+            <input class="email-input" type="text" placeholder="Email">
+          </div>
+          <div class="col-sm-12">
+            <input class="subject-input" type="text" placeholder="Tytuł">
+          </div>
+          <div class="col-sm-12">
+            <textarea class="message-input" rows="6" placeholder="Wiadomość"></textarea>
+          </div>
+          <div class="col-sm-12">
+            <button class="btn btn-2"><b>NAPISZ</b></button>
+          </div>
+
+        </div><!-- row -->
+      </form>
+
+    </div><!-- leave-comment -->
+
+  </div><!-- comments-area -->
+
+{% endblock content %}
