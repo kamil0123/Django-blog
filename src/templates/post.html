@@ -1,41 +1,46 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
+
 {% block head_title %}
 	{{ instance.title }} | {{ block.super }}
 {% endblock head_title %}
 
-{% block content %}
-	<div class='col-sm-6 col-sm-offset-3'>
-		{% if instance.image %}
-    		<img src='{{ instance.image.url }}' class='img-responsive' />
-    	{% endif %}
-		<h1>{{ title }} 
-      <small>
-        {% if instance.draft %}
-          <span style='color:red;'>Draft</span> 
-        {% endif %}
-        {{ instance.publish }}
-      </small>
-    </h1>
+{% block css %}
 
-    {% if instance.user.get_full_name %}
-      <p>Author: {{ instance.user.get_full_name }}</p>
+<link rel="stylesheet" href='{% static "css/singlePost/styles.css" %}' />
+
+<link rel="stylesheet" href='{% static "css/singlePost/responsive.css" %}' />
+
+{% endblock css %}
+
+{% block content %}
+
+  <div class="single-post">
+
+    {% if instance.image %}
+      <div class="image-wrapper"><img src='{{ instance.image.url }}' alt="Blog Image"></div>
     {% endif %}
 
+    <div class="icons">
+      <div class="left-area">
+        <a class="btn caegory-btn" href="#"><b>BOBASY</b></a>
+      </div>
+    </div>
+
+    <p class="date"><em>{{ instance.publish }}</em></p>
+    <h3 class="title"><a href="#"><b class="light-color">{{ instance.title }} </b></a></h3>
+    
     <p>
       <div class="fb-like" data-href="{{ request.build_absolute_uri }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
       <hr/>
     </p>
+    
+    {{ instance.content | linebreaks }}
+    <hr/>
+    <br/>
+    <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
 
-    <div class='row'>
-      <div class='col-sm-12'>
-        {{ instance.content | linebreaks }}
-        <hr/>
-        <br/>
-        <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
-      </div>
-    </div>
-	
-  </div>
+  </div><!-- single-post -->
 
 {% endblock content %}
