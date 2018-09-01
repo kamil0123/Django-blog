@@ -96,9 +96,10 @@
 
             {% if 'o-mnie' not in request.get_full_path %}
               {% include "aboutMe.html" %}
+              {% include "categories.html" %}              
             {% endif %}
 
-            {% include "categories.html" %}
+
             
             </div>
           </div>

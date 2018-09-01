@@ -109,4 +109,5 @@ venv.bak/
 
 # static jpg files
 media_cdn/*
+static_cdn/*
 src/static/images/*

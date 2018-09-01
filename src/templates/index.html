@@ -13,17 +13,19 @@
 
 {% block content %}
 
+<!--
   <form method='GET' action=''>
     <input type='text' name='q' placeholder='Search posts' value='{{ request.GET.q }}'/>
     <input type='submit' value='Search' />
   </form>
+-->
 
   {% for obj in object_list %}
 
     <div class="single-post">
 
       {% if obj.image %}
-        <div class="image-wrapper"><img src="images/blog-1-1000x600.jpg" alt="Blog Image"></div>
+        <div class="image-wrapper"><img src='{{ obj.image.url }}' alt="Blog Image"></div>
       {% endif %} 
 
       {% if obj.draft %}
@@ -45,6 +47,7 @@
     </div><!-- single-post -->
   {% endfor %}
 
+<!--
   <div class="pagination">
     <span class="step-links">
         {% if object_list.has_previous %}
@@ -58,6 +61,7 @@
         {% endif %}
     </span>
   </div>
+-->
 
 {% endblock content %}
 
