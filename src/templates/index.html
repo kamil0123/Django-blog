@@ -40,7 +40,7 @@
           <a class="btn caegory-btn" href="#"><b>{{ obj.category }}</b></a>
         </div>
       </div>
-      <p class="date"><em>{{ obj.publish|timesince }} ago</em></p>
+      <p class="date"><em>{{ obj.publish }}</em></p>
       <h3 class="title"><a href='{{ obj.get_absolute_url }}'><b class="light-color">{{ obj.title }}</b></a></h3>
       <p>{{ obj.content|linebreaks|truncatechars:120 }}</p>
       <a class="btn read-more-btn" href="{{ obj.get_absolute_url }}"><b>CZYTAJ DALEJ</b></a>
