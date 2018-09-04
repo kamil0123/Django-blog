@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     -->
 
-		<link rel='stylesheet' href='{% static "css/base.css" %}' />
-
     <link rel="stylesheet" href='{% static "css/ionicons.css" %}' />
 
     <link rel="stylesheet" href='{% static "css/bootstrap.css" %}' />
@@ -59,7 +57,7 @@
 
         <ul class="main-menu visible-on-click" id="main-menu">
           <li><a href="{% url 'posts:posts' %}">BLOG</a></li>
-          <li><a href="#">OFERTA</a></li>
+          <li><a href="{% url 'offer' %}">OFERTA</a></li>
           <li><a href="{% url 'aboutMe' %}">O MNIE</a></li>
           <li><a href="{% url 'contact' %}">KONTAKT</a></li>
         </ul><!-- main-menu -->

@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('contactMessage.urls', namespace='message')),
     path('o-mnie/', TemplateView.as_view(template_name='aboutMePage.html'), name='aboutMe'),
     path('kontakt/', TemplateView.as_view(template_name='contact.html'), name='contact'),
+    path('oferta/', TemplateView.as_view(template_name='offer.html'), name='offer'),
 ]
 
 if settings.DEBUG:

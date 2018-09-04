@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block css %}
+
+<link rel="stylesheet" href='{% static "css/aboutMe/styles.css" %}' />
+
+<link rel="stylesheet" href='{% static "css/aboutMe/responsive.css" %}' />
+
+{% endblock css %}
+
+
+
+{% block content %}
+
+
+
+<div class="single-post">
+  <div class="image-wrapper">
+    <img src='{% static "images/offer.jpg" %}' alt="Blog Image">
+  </div>
+
+  <div class="icons">
+    <div class="left-area">
+      <a class="btn caegory-btn" href="#"><b>OFERTA</b></a>
+    </div>
+  </div>
+
+  <p class="desc" align="justify">Chętnie poprowadzę, w Warszawie lub jej okolicach, urodziny lub inną imprezę dla Twojego dziecka i jego gości. Z założenia będą dominować w niej zabawy i gry ruchowe, ale nie tylko. Decydując się na wspólne świętowanie możesz skorzystać z moich gotowych scenariuszy lub przedstawić mi temat przewodni, abym plan dopasowała specjalnie do Twojej imprezy. </p>
+
+  <p class="desc" align="justify">Na Twoje życzenie zajmę się także wyborem i dostarczeniem wymarzonego tortu oraz prezentu. </p>
+
+  <p class="desc" align="justify">Jeśli chcesz poprowadzić urodziny samodzielnie, ale nie masz pomysłu w co się bawić z dziećmi, skontaktuj się ze mną. Możesz kupić mój scenariusz i samodzielnie poprowadzić urodziny według mojego pomysłu :) Lista dostępnych scenariuszy wraz z cennikiem już wkrótce :) </p>
+
+
+</div><!-- single-post -->
+
+{% endblock content %}
