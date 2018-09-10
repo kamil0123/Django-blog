@@ -256,6 +256,10 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 4. SINGLE POST
 --------------------------------- */
 
+.single-post .content-markdown ul{ padding: 0; margin: 10; display: block; list-style-type: square; }
+
+.single-post .content-markdown li{ font-size: 1.05em; font-family: 'Maven Pro', sans-serif; font-weight: 400; color: #555; list-style: inherit; display: list-item;}
+
 .blog-area{ padding: 370px 0 50px; }
 
 .blog-posts .single-post{ margin-bottom: 60px; }

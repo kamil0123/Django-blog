@@ -41,8 +41,8 @@
         <div class="right-area">
 
           <ul class="social-icons">
-            <li><a href="https://www.facebook.com/profile.php?id=100001087795432"><i class="ion-social-facebook-outline"></i></a></li>
-            <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+            <li><a href="https://www.facebook.com/bawicsiejestpieknie/"><i class="ion-social-facebook-outline"></i></a></li>
+            <li><a href="https://www.instagram.com/bawic_sie_jest_pieknie/"><i class="ion-social-instagram-outline"></i></a></li>
           </ul><!-- right-area -->
 
         </div><!-- right-area -->
@@ -94,8 +94,10 @@
 
             {% if 'o-mnie' not in request.get_full_path %}
               {% include "aboutMe.html" %}
-              {% include "categories.html" %}              
+                           
             {% endif %}
+
+            {% include "categories.html" %} 
 
 
             
@@ -125,5 +127,19 @@
     <script src='{% static "js/layerslider.js" %}' ></script>
 
     <script src='{% static "js/scripts.js" %}' ></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js'></script>
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $(".content-markdown").each(function(){
+          var content = $(this).text()
+          console.log(content)
+          var markedContent = marked(content)
+          console.log(markedContent)
+          $(this).html(markedContent)
+        })
+      })
+    </script>  
 	</body>
 </html> 
