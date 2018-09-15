@@ -260,6 +260,8 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 
 .single-post .content-markdown li{ font-size: 1.05em; font-family: 'Maven Pro', sans-serif; font-weight: 400; color: #555; list-style: inherit; display: list-item;}
 
+.single-post .content-markdown table, td, th { border: 1px solid black; border-collapse: collapse;  font-family: 'Maven Pro', sans-serif; font-weight: 400; color: #555; }
+
 .blog-area{ padding: 370px 0 50px; }
 
 .blog-posts .single-post{ margin-bottom: 60px; }
@@ -284,7 +286,6 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 
 .single-post .quoto i{ margin-right: 10px; position: absolute; top: 10px; left: 10px; font-size: 1.4em; 
 	color: #FFAD4D; }
-
 
 /* POST AUTHOR */
 

@@ -111,3 +111,6 @@ venv.bak/
 media_cdn/*
 static_cdn/*
 src/static/images/*
+
+# all zip files
+*.zip
