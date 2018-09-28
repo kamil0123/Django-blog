@@ -29,7 +29,13 @@ class PostsView(View):
         Q(user__last_name__icontains=query)
         ).distinct()
 
-    paginator = Paginator(queryset_list, 10) # Show 25 contacts per page
+    query = request.GET.get("category")
+    if query:
+      queryset_list = queryset_list.filter(
+        Q(category__name__icontains=query)
+        ).distinct()
+
+    paginator = Paginator(queryset_list, 3) # Show n contacts per page
     page = request.GET.get(page_request_var)
 
     try:
@@ -56,6 +62,8 @@ class PostView(View):
     if instance.publish > timezone.now().date() or instance.draft:
       if not request.user.is_staff or not request.user.is_superuser:
         raise Http404
+
+
     
     context = {
       "title": instance.title,

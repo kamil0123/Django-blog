@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post
+from .models import Post, Category
 
 # Register your models here.
 class PostModelAdmin(admin.ModelAdmin):
@@ -12,5 +12,13 @@ class PostModelAdmin(admin.ModelAdmin):
   class Meta:
     model = Post
 
+class CategoryModelAdmin(admin.ModelAdmin):
+  list_display = ["name"]
+  list_display_links = ["name"]
+
+  class Meta:
+    model = Category
+
 admin.site.register(Post, PostModelAdmin)
+admin.site.register(Category, CategoryModelAdmin)
 

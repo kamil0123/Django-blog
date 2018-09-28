@@ -23,33 +23,53 @@ class PostManager(models.Manager):
     # Post.objects.all() = super(PostManager, self).all()
     return self.get_queryset().published()
 
-def upload_location(instance, filename):
+def uploadLocation_postImage(instance, filename):
     #filebase, extension = filename.split(".")
     #return "%s/%s.%s" %(instance.id, instance.id, extension)
     PostModel = instance.__class__
     new_id = PostModel.objects.order_by("id").last().id + 1
     return "%s/%s" %(instance.id, filename)
 
-class Post(models.Model):
-  title = models.CharField(max_length=160)
-  user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
-  slug = models.SlugField(unique=True)
-  category = models.CharField(max_length=100)
-  content = models.TextField()
-  image = models.ImageField(upload_to=upload_location, 
+def uploadLocation_categoryImage(instance, filename):
+    #filebase, extension = filename.split(".")
+    #return "%s/%s.%s" %(instance.id, instance.id, extension)
+    CategoryModel = instance.__class__
+    new_id = CategoryModel.objects.order_by("id").last().id + 1
+    return "%s/%s" %(instance.id, filename)
+
+class Category(models.Model):
+  name = models.CharField(max_length=30)
+  image = models.ImageField(upload_to=uploadLocation_categoryImage, 
             null=True, 
             blank=True, 
             width_field="width_field", 
             height_field="height_field")
-  height_field = models.IntegerField(default=0)
-  width_field = models.IntegerField(default=0)
+  height_field = models.IntegerField(default=150)
+  width_field = models.IntegerField(default=450) 
+
+  def __str__(self):
+    return self.name
+
+class Post(models.Model):
+  title = models.CharField(max_length=160)
+  user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, default=1)
+  slug = models.SlugField(unique=True)
+  category = models.ManyToManyField(Category)
+  content = models.TextField()
+  image = models.ImageField(upload_to=uploadLocation_postImage, 
+            null=True, 
+            blank=True, 
+            width_field="width_field", 
+            height_field="height_field")
+  height_field = models.IntegerField(default=600)
+  width_field = models.IntegerField(default=900)
   draft = models.BooleanField(default=False)
   created = models.DateTimeField(auto_now=False, auto_now_add=True)
   updated = models.DateTimeField(auto_now=True, auto_now_add=False)
   publish = models.DateField(auto_now=False, auto_now_add=False)
 
   objects = PostManager()
-  
+
   def __str__(self):
     return self.title
 

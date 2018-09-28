@@ -37,7 +37,9 @@
 
       <div class="icons">
         <div class="left-area">
-          <a class="btn caegory-btn" href="#"><b>{{ obj.category }}</b></a>
+        {% for category in obj.category.all %}
+          <a class="btn caegory-btn" href="#"><b>{{ category }}</b></a>
+        {% endfor %}
         </div>
       </div>
       <p class="date"><em>{{ obj.publish }}</em></p>
