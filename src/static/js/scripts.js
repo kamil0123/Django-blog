@@ -59,6 +59,8 @@
 		}
 		
 	});
+
+  changeMarkdownText()
 	
 	
 })(jQuery);
@@ -203,4 +205,14 @@ function isExists(elem){
 		return true;
 	}
 	return false;
+}
+
+function changeMarkdownText() {
+  $(document).ready(function() {
+    $(".content-markdown").each(function() {
+      var content = $(this).text()
+      var markedContent = marked(content)
+      $(this).html(markedContent)
+    })
+  })
 }
