@@ -27,6 +27,7 @@ urlpatterns = [
     path('o-mnie/', TemplateView.as_view(template_name='aboutMePage.html'), name='aboutMe'),
     path('kontakt/', TemplateView.as_view(template_name='contact.html'), name='contact'),
     path('oferta/', TemplateView.as_view(template_name='offer.html'), name='offer'),
+    path('cookies/', TemplateView.as_view(template_name='cookies.html'), name='cookies'),
 ]
 
 if settings.DEBUG:

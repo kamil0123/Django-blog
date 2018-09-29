@@ -230,13 +230,12 @@ function cookiesInfoBar() {
           "background": "#14a7d0"
         }
       },
-      "showLink": false,
       "theme": "classic",
       "content": {
         "message": "Strona wykorzystuje pliki cookies. Korzystanie z witryny oznacza zgodę na ich zapis lub odczyt zgodnie z ustawieniami przeglądarki. Jeśli nie zgadzasz się na wykorzystanie plików - zmień ustawienia przeglądarki.",
         "dismiss": "Zgadzam się",
         "link": "Więcej informacji",
-        "href": "http://cookiesandyou.com"
+        "href": $("#cookies-url").attr("data-url")
       }
     })
   });
