@@ -22,11 +22,12 @@
 
   {% for obj in object_list %}
 
-    {% if forloop.counter0 == 2 %}
-      <div class="row">
-    {% endif %}
-
     {% if forloop.counter0 >= 2 %}
+
+      {% if forloop.counter0 == 2 %}
+        <div class="row">
+      {% endif %}
+      
       <div class="col-lg-6 col-md-12">
     {% endif %}
 
@@ -57,11 +58,11 @@
     </div><!-- single-post -->
 
     {% if forloop.counter0 >= 2 %}
-      </div>
-    {% endif %}
+       </div>
 
-    {% if forloop.last %}
-      </div>
+      {% if forloop.last %}
+        </div>
+      {% endif %}
     {% endif %}
 
   {% endfor %}
