@@ -22,6 +22,14 @@
 
   {% for obj in object_list %}
 
+    {% if forloop.counter0 == 2 %}
+      <div class="row">
+    {% endif %}
+
+    {% if forloop.counter0 >= 2 %}
+      <div class="col-lg-6 col-md-12">
+    {% endif %}
+
     <div class="single-post">
 
       {% if obj.image %}
@@ -47,6 +55,15 @@
       <p>{{ obj.content|linebreaks|truncatechars:120 }}</p>
       <a class="btn read-more-btn" href="{{ obj.get_absolute_url }}"><b>CZYTAJ DALEJ</b></a>
     </div><!-- single-post -->
+
+    {% if forloop.counter0 >= 2 %}
+      </div>
+    {% endif %}
+
+    {% if forloop.last %}
+      </div>
+    {% endif %}
+
   {% endfor %}
 
 <!--
