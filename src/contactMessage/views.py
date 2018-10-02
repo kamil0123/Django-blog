@@ -2,6 +2,7 @@ from .forms import ContactForm
 
 from django.conf import settings
 
+from django.contrib import messages
 
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -28,8 +29,9 @@ def contactView(request):
             [settings.EMAIL_HOST_USER],
             fail_silently=False,
           )
-          
-          return HttpResponseRedirect('/kontakt')
+          messages.add_message(request, messages.INFO, 'Dziękuję, Twoja wiadomość została wysłana.')
+          # return HttpResponseRedirect('/kontakt') 
+
 
     # if a GET (or any other method) we'll create a blank form
     else:
