@@ -1,7 +1,33 @@
 <div class="sidebar-section newsletter-area">
-  <h5 class="title"><b>Subscribe to our newsletter</b></h5>
-  <form action="post">
-    <input class="email-input" type="text" placeholder="Your email here">
-    <button class="btn btn-2" type="submit">SUBSCRIBE</button>
+  <h5 class="title"><b>Newsletter - informacje o nowych artykułach</b></h5>
+  <form method="post" action="/newsletter/">
+    {% csrf_token %}
+
+    <div id="subscribe-container">
+      <input class="email-input" type="text" placeholder="Imię" name="name">
+      <input class="email-input" type="text" placeholder="Adres e-mail" name="email">
+      <button id="subscribe-button" class="btn btn-2" type="submit">ZAPISZ SIĘ</button>
+    </div>
   </form>
+
+
+  {% if messages %}
+
+    {% for message in messages %}
+
+      {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+         <script>
+          var sendButton = document.getElementById("subscribe-container");
+          sendButton.style.display = "none";
+        </script>
+      {% endif %}
+
+      <p>{{ message }}</p> 
+      <script>
+        alert('{{ message }}');
+      </script>
+
+    {% endfor %}
+  {% endif %}
+
 </div><!-- sidebar-section newsletter-area -->
