@@ -67,21 +67,19 @@
 
   {% endfor %}
 
-<!--
   <div class="pagination">
     <span class="step-links">
         {% if object_list.has_previous %}
-          <a href="?{{ page_request_var }}={{ object_list.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %} ">previous</a>
+          <a class="btn read-more-btn" href="{% if object_list.previous_page_number == 1 %}{% url 'posts:posts' %}{% else %}?{{ page_request_var }}={{ object_list.previous_page_number }}{% endif %}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %} ">POPRZEDNIA</a>
         {% endif %}
         <span class="current">
-            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+            strona {{ object_list.number }} z {{ object_list.paginator.num_pages }}
         </span>
         {% if object_list.has_next %}
-          <a href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">next</a>
+          <a class="btn read-more-btn" href="?{{ page_request_var }}={{ object_list.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">NASTĘPNA</a>
         {% endif %}
     </span>
   </div>
--->
 
 {% endblock content %}
 

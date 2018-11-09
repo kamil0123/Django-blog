@@ -35,7 +35,7 @@ class PostsView(View):
         Q(category__name__icontains=query)
         ).distinct()
 
-    paginator = Paginator(queryset_list, 20) # Show n contacts per page
+    paginator = Paginator(queryset_list, 6) # Show n contacts per page
     page = request.GET.get(page_request_var)
 
     try:

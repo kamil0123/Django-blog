@@ -379,6 +379,10 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 .latest-post .category-btn{ padding: 5px 10px; margin-bottom: 5px; }
 
 .latest-post .date{ margin-top: 5px; color: #888; }
+
+/* PAGINATION */
+
+.current{ color: #999; }
 	
 
 /* ADVERTISEMENT AREA */
