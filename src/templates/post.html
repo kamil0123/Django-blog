@@ -38,10 +38,11 @@
       <hr/>
     </p>
     <div class='content-markdown' align='justify'>{{ instance.content }}</div>
-    
-    <hr/>
+    <hr>
 
+    {% include "postUnder.html" %}
     {% include "newsletterUnderPost.html" %}
+
     <br/>
     
     <div class="fb-comments" data-href="{{ request.build_absolute_uri }}" data-numposts="5"></div>
