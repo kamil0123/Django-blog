@@ -18,6 +18,7 @@ def newsletterSubscribe(request):
       isSubscriptionSuccess = SendSubscribeMail(email, name)
 
       if isSubscriptionSuccess:
+        form = NewsletterForm()
         return redirect('/potwierdzenie-zapisu/', {'form': form})
       else:
         messages.add_message(request, messages.INFO, 'Wystąpił nieoczekiwany błąd. Spróbuj ponownie.')
@@ -28,8 +29,7 @@ def newsletterSubscribe(request):
 
 
   else:
-
     messages.add_message(request, messages.INFO, 'Wystąpił nieoczekiwany błąd. Spróbuj ponownie.')
-    form = NewsletterForm()
 
+  form = NewsletterForm()
   return redirect(request.META['HTTP_REFERER'], {'form': form})
