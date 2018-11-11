@@ -384,6 +384,12 @@ header .main-menu li.drop-down a.mouseover + ul.drop-down-menu{ display: block;
 
 .newsletter-area .email-input{ width: 100%; margin: 15px 0; border: 0; padding: 10px 20px; background: #fff; }
 
+.newsletter-area .email-input-under{ width: 100%; margin: 15px 0; border: 0; padding: 10px 20px; background: #fff; }
+
+  @media (min-width: 768px) {
+    .newsletter-area .email-input-under{ width: 35%; }
+  }
+
 
 /* CATEGORY AREA */
 

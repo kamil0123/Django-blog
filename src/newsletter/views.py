@@ -1,9 +1,9 @@
 from .forms import NewsletterForm
+from .utils import SendSubscribeMail
 
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-
 
 # Create your views here.
 def newsletterSubscribe(request):
@@ -14,13 +14,18 @@ def newsletterSubscribe(request):
     if form.is_valid():
       name = form.cleaned_data['name']
       email = form.cleaned_data['email']
-      print(name)
-      print(email)
 
-      messages.add_message(request, messages.INFO, 'Dziękuję, zostałeś zapisany.')
+      isSubscriptionSuccess = SendSubscribeMail(email, name)
+
+      if isSubscriptionSuccess:
+        return redirect('/potwierdzenie-zapisu/', {'form': form})
+      else:
+        messages.add_message(request, messages.INFO, 'Wystąpił nieoczekiwany błąd. Spróbuj ponownie.')
+
     else:
+      messages.add_message(request, messages.WARNING, 'Błędne imię lub e-mail. Spróbuj wypełnić formularz ponownie.')
 
-      messages.add_message(request, messages.WARNING, 'Błędne imię lub hasło. Spróbuj wypełnić formularz ponownie.')
+
 
   else:
 

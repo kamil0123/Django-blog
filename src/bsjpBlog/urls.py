@@ -31,6 +31,8 @@ urlpatterns = [
     path('kontakt/', TemplateView.as_view(template_name='contact.html'), name='contact'),
     path('oferta/', TemplateView.as_view(template_name='offer.html'), name='offer'),
     path('cookies/', TemplateView.as_view(template_name='cookies.html'), name='cookies'),
+    path('potwierdzenie-zapisu/', TemplateView.as_view(template_name='newsletterConfirm.html'), name='newslettterConfirm'),
+    path('newsletter-dziekuje/', TemplateView.as_view(template_name='newsletterConfirmed.html'), name='newslettterConfirmed')
 ]
 
 if settings.DEBUG:

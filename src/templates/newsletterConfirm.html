@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block css %}
+
+<link rel="stylesheet" href='{% static "css/singlePost/styles.css" %}' />
+
+<link rel="stylesheet" href='{% static "css/singlePost/responsive.css" %}' />
+
+{% endblock css %}
+
+{% block content %}
+
+<div class="single-post">
+  <div class="image-wrapper">
+    <img src='{% static "images/subscription.jpg" %}' alt="Subscription is almost ready">
+  </div>
+
+  <div class="icons">
+    <div class="left-area">
+      <a class="btn caegory-btn" href="#"><b>JUŻ PRAWIE...</b></a>
+    </div>
+  </div>
+
+  <p class="desc" align="justify">Dziękuję, że chcesz się zapisać do mojego newslettera. Aby dokończyć rejestrację:</p>
+  <p>1. Wejdź na swoją skrzynkę pocztową.</p>
+  <p>2. Znajdź e-mail ode mnie.</p>
+  <p>3. Kliknij w przycisk lub link potwiedzający subskrypcę :)</p>
+</div><!-- single-post -->
+
+{% endblock content %}

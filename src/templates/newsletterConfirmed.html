@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block css %}
+
+<link rel="stylesheet" href='{% static "css/singlePost/styles.css" %}' />
+
+<link rel="stylesheet" href='{% static "css/singlePost/responsive.css" %}' />
+
+{% endblock css %}
+
+{% block content %}
+
+<div class="single-post">
+  <div class="image-wrapper">
+    <img src='{% static "images/letter.jpg" %}' alt="Subscription confirmed">
+  </div>
+
+  <div class="icons">
+    <div class="left-area">
+      <a class="btn caegory-btn" href="#"><b>NEWSLETTER</b></a>
+    </div>
+  </div>
+
+  <p class="desc" align="justify">Witam Cię serdecznie w gronie subskrybentów mojego newslettera i dziękuję za Twoją rejestrację :) 
+  </br>
+  Około raz na tydzień będziesz otrzymywać maila z informacją o nowych wpisach na blogu oraz od czasu do czasu dodatkowe informacje. 
+  </br>
+  Dziękuję Ci, że czytasz mojego bloga i zaufałaś(eś) mi zapisując się na newsletter. Postaram się Ciebie nie zawieźć.
+  </br>
+  Pozdrawiam
+  </br>
+  Gosia
+  </p>
+
+
+</div><!-- single-post -->
+
+{% endblock content %}

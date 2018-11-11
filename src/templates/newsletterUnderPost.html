@@ -1,11 +1,11 @@
 <div class="sidebar-section newsletter-area">
-  <h5 style="color: white"><b>Newsletter - co tydzień mail z informacją o nowych artykułach</b></h5>
+  <h5 style="color: white"><b>Chcesz co tydzień otrzymywać maila z informacją o nowych artykułach?</b></h5>
   <form method="post" action="/newsletter/">
     {% csrf_token %}
 
     <div id="subscribe-container">
-      <input class="email-input" type="text" placeholder="Imię" name="name">
-      <input class="email-input" type="text" placeholder="Adres e-mail" name="email">
+      <input class="email-input-under" type="text" placeholder="Imię" name="name">
+      <input class="email-input-under" type="text" placeholder="Adres e-mail" name="email">
       <button id="subscribe-button" class="btn btn-2" type="submit">ZAPISZ SIĘ</button>
     </div>
   </form>
@@ -17,9 +17,6 @@
 
       {% if forloop.first %}
         <p>{{ message }}</p> 
-        <script>
-          alert('{{ message }}');
-        </script>
       {% endif %}
 
     {% endfor %}
