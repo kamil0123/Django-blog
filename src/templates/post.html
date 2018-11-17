@@ -25,7 +25,7 @@
     <div class="icons">
       <div class="left-area">
         {% for category in instance.category.all %}
-          <a class="btn caegory-btn" href="#"><b>{{ category }}</b></a>
+          <a class="btn caegory-btn" href="{% url 'posts:posts' %}?category={{ category }}"><b>{{ category }}</b></a>
         {% endfor %}
       </div>
     </div>
