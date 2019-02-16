@@ -1,0 +1,21 @@
+.si {
+  font-size: 30px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.si-facebook {
+  background: white;
+  color: #3B5998;
+}
+
+.si-youtube {
+  background: white;
+  color: #bb0000;
+}
+
+.si-instagram {
+  background: white;
+  color: #125688;
+}
