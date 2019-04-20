@@ -26,13 +26,19 @@ urlpatterns = [
     path('', include('posts.urls', namespace='posts')),
     path('', include('contactMessage.urls', namespace='message')),
     path('', include('newsletter.urls', namespace='newsletter')),
+    path('', include('places.urls', namespace='places')),
 
     path('o-mnie/', TemplateView.as_view(template_name='aboutMePage.html'), name='aboutMe'),
     path('kontakt/', TemplateView.as_view(template_name='contact.html'), name='contact'),
     path('oferta/', TemplateView.as_view(template_name='offer.html'), name='offer'),
     path('cookies/', TemplateView.as_view(template_name='cookies.html'), name='cookies'),
+    
     path('potwierdzenie-zapisu/', TemplateView.as_view(template_name='newsletterConfirm.html'), name='newslettterConfirm'),
-    path('newsletter-dziekuje/', TemplateView.as_view(template_name='newsletterConfirmed.html'), name='newslettterConfirmed')
+    path('newsletter-dziekuje/', TemplateView.as_view(template_name='newsletterConfirmed.html'), name='newslettterConfirmed'),
+    
+    path('obliczanie-predkosci-biegu/', TemplateView.as_view(template_name='speedCalculation.html'), name='speedCalculation'),
+
+
 ]
 
 if settings.DEBUG:

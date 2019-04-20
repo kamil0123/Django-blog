@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load l10n %}
+
+{% block css %}
+
+<link rel="stylesheet" href='{% static "css/map/styles.css" %}' />
+<link rel="stylesheet" href='{% static "css/map/responsive.css" %}' />
+<link rel="stylesheet" href='{% static "css/postsContent/styles.css" %}' />
+
+{% endblock css %}
+
+{% block content %}
+
+<div class="single-post">
+
+
+<h3>Miejsca przyjazne dzieciom</h3>
+<!--The div element for the map -->
+<div id="map"></div>
+
+  <p class="desc" align="justify">Zaglądając do tego przewodnika, będziecie mieli okazję poznać miejsca, które warto odwiedzić z dzieckiem do ok. 3 roku życia. Każdy z wymienionych tutaj punktów został przeze mnie opisany szczegółowo oraz ogólnie (pod względem dostępności kilku ważnych elementów, mile widzianych podczas wypraw z maluchem), a dodatkowo opatrzony wieloma zdjęciami, które pomogą Wam jeszcze lepiej stworzyć w głowie obraz danej przestrzeni.</p>
+
+  <p class="desc" align="justify">Wszystkie miejsca zostały podzielone na trzy kategorie: place zabaw, lokale zamknięte, lokale plenerowe. </p>
+
+  <p class="desc" align="justify">Z moich obserwacji wynika, że większość placów zabaw jest przeznaczona dla dzieci w wieku minimum przedszkolnym. Niewiele jest miejsc, z których mogą skorzystać dzieci młodsze, a już na pewno nie te, które jeszcze nie potrafią chodzić. Specjalnie dla Was wyszukuję takie punktę i opisuje je w niniejszym przewodniku.</p>
+
+  <p class="desc" align="justify">Na całe szczęście powstaje coraz więcej kawiarni, często zwanych klubokawiarniami, przeznaczonych dla rodziców (choć głównie mam ;) ) z małymi dziećmi. To miejsca, w których nie podaje się alkoholu, ale dorośli mogą spotkać się na kawę z przyjaciółmi i bez przeszkód zabrać ze sobą dziecko, które nie będzie musiało nudzić się przy stole, ale może cieszyć się swobodną (lub zorganizowaną) zabawą w dziecięcej części kawiarni. M.in. takie miejsca mam na myśli, mówiąc o lokalach zamkniętych. Kawiarnie, które warto odwiedzić ze swoim szkrabem, jeśli jesteś mamą na urlopie macierzyński lub rodzicem na wychowawczym i po prostu potrzebujesz spotkań z bliskimi, ale nie masz w pobliżu babci ani żadnej opiekunki. Czasami spotykam zwykłe restauracje, które dysponują krzesełkami do jedzenia dla bobasów, mają piękne ogrody z placami zabaw lub wydzielone kąciki dla dzieci, aby te nie musiały non stop siedzieć z dorosłymi przy stole (wiadomo, że takie unieruchomienie nie jest dla nich naturalne) – o nich też wspominam w tejkategorii :)</p>
+
+  <p class="desc" align="justify">Lokale plenerowe, to miejsca, które łączą w sobie ideę restauracji bądź kawiarni z placem zabaw dla dzieci. Czasem można tam nawet obejrzeć mecz, bez wyrzutów, że dziecko też będzie musiało patrzyć w ekran. Takich miejsc jest najmniej, a jedocześnie należą do moich ulubionych, dlatego nie może ich tu zabraknąć :)</p>
+
+  <p class="desc" align="justify">Jeśli nie wiesz, gdzie dzisiaj wybrać się ze swoim maluchem, zajrzyj tutaj, a ja Cię poprowadzę :)</p>
+
+</div><!-- single-post -->
+
+<div class="posts-content">
+  <ol>
+  {% for place in places %}
+    <li>
+      <a href="{{ place.get_absolute_url }}">{{ place.title }}</a>
+    </li>
+  {% endfor %}
+  </ol>
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+    <script>
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var mapCenter = {lat: 52.328792, lng: 20.938525};
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+      document.getElementById('map'), {zoom: 16, center: mapCenter});
+
+  var locations = [];
+  var lat;
+  var lon;
+
+  {% for place in places %}
+    locations.push([
+      '<p><a href="{{ place.get_absolute_url }}" style="color:blue">{{ place.title }}</a></p>',
+      {{ place.latitude|unlocalize }},
+      {{ place.longitude|unlocalize }}
+    ]);
+  {% endfor %}
+  console.log(locations);
+
+  var infowindow = new google.maps.InfoWindow();
+  var marker, i;
+
+  for (i = 0; i < locations.length; i++) {  
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+      map: map
+    });
+
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        infowindow.setContent(locations[i][0]);
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+  }
+
+
+}
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5x0D4IcWHWn7lM3ro9m9p90SNoKUhrls&callback=initMap">
+    </script>
+{% endblock scripts %}
