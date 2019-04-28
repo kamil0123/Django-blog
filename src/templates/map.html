@@ -50,11 +50,10 @@
     <script>
 // Initialize and add the map
 function initMap() {
-  // The location of Uluru
-  var mapCenter = {lat: 52.328792, lng: 20.938525};
-  // The map, centered at Uluru
+  // The location of map
+  var mapCenter = {lat: 51.930121, lng: 19.489307};
   var map = new google.maps.Map(
-      document.getElementById('map'), {zoom: 16, center: mapCenter});
+      document.getElementById('map'), {zoom: 6, center: mapCenter});
 
   var locations = [];
   var lat;
@@ -72,19 +71,23 @@ function initMap() {
   var infowindow = new google.maps.InfoWindow();
   var marker, i;
 
-  for (i = 0; i < locations.length; i++) {  
+  var markers = locations.map(function(location, i) {
     marker = new google.maps.Marker({
-      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-      map: map
+      position: new google.maps.LatLng(location[1], location[2]),
     });
 
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
       return function() {
-        infowindow.setContent(locations[i][0]);
+        infowindow.setContent(location[0]);
         infowindow.open(map, marker);
       }
     })(marker, i));
-  }
+
+    return marker;
+  });
+
+  var markerCluster = new MarkerClusterer(map, markers,
+    {imagePath: '{% static "images/markers/m" %}'});
 
 
 }
@@ -92,4 +95,5 @@ function initMap() {
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5x0D4IcWHWn7lM3ro9m9p90SNoKUhrls&callback=initMap">
     </script>
+    <script src='{% static "js/markerclusterer.js" %}' ></script>
 {% endblock scripts %}

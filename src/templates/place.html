@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load staticfiles %}
+{% load l10n %}
 
 {% block head_title %}
   {{ instance.title }} | {{ block.super }}
@@ -23,11 +24,16 @@
   <link rel="stylesheet" href='{% static "css/singlePost/styles.css" %}' />
   <link rel="stylesheet" href='{% static "css/singlePost/responsive.css" %}' />
 
+  <link rel="stylesheet" href='{% static "css/map/styles.css" %}' />
+  <link rel="stylesheet" href='{% static "css/map/responsive.css" %}' />
+
 {% endblock css %}
 
 {% block content %}
 
   <div class="single-post">
+
+
 
     {% if instance.image %}
       <div class="image-wrapper"><img src='{{ instance.image.url }}' alt="Blog Image"></div>
@@ -43,9 +49,10 @@
 
     <p class="date"><em>{{ instance.publish }}</em></p>
     <h3 class="title"><a href="#"><b class="light-color">{{ instance.title }} </b></a></h3>
-    
-    <div class='content-markdown' align='justify'>{{ instance.content }}</div>
 
+    <div class='content-markdown' align='justify'>{{ instance.content }}</div>
+    <div id="map"></div>
+    
     <!-- Facebook share button code -->
     <br/>
     <div class="fb-share-button" data-href="{{ request.build_absolute_uri }}" data-layout="button" data-size="large" data-mobile-iframe="true">
@@ -64,3 +71,22 @@
   </div><!-- single-post -->
 
 {% endblock content %}
+
+{% block scripts %}
+  <script>
+    // Initialize and add the map
+    function initMap() {
+      var place = {
+        lat: {{ instance.latitude|unlocalize }}, 
+        lng: {{ instance.longitude|unlocalize }}
+      };
+      var map = new google.maps.Map(
+          document.getElementById('map'), {zoom: 16, center: place});
+      var marker = new google.maps.Marker({position: place, map: map});
+    }
+
+  </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5x0D4IcWHWn7lM3ro9m9p90SNoKUhrls&callback=initMap">
+  </script>
+{% endblock scripts %}
